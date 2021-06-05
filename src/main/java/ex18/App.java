@@ -12,6 +12,58 @@ public class App {
 
     public static void main(String[] args) {
         App myApp = new App();
-        
+
+        String converter = myApp.whichConversion();
+        double temp = myApp.readTemp(converter);
+
+        double result = myApp.calculateResult(converter, temp);
+        String outputString = myApp.generateOutput(converter, result);
+        myApp.output(outputString);
+    }
+
+    public String whichConversion() {
+        String choice;
+
+        // make sure input is valid
+        while (true) {
+            System.out.print("""
+                    Press C to convert from Fahrenheit to Celsius.
+                    Press F to convert from Celsius to Fahrenheit.
+                    Your choice:\s""");
+
+            choice = in.nextLine();
+
+            if (choice.equalsIgnoreCase("C") || choice.equalsIgnoreCase("F")){
+                break;
+            } else {
+                System.out.print("Invalid choice. Choose again.");
+            }
+
+        }
+
+        return choice;
+    }
+
+    public double readTemp(String converter) {
+        if (converter.equalsIgnoreCase("C")) {
+            System.out.print("Please enter your temperature in Fahrenheit: ");
+        } else {
+            System.out.print("Please enter your temperature in Celsius: ");
+        }
+
+        return in.nextDouble();
+    }
+
+    public double calculateResult(String converter, double temp) {
+        return converter.equalsIgnoreCase("C") ? ((temp - 32) * 5.0 / 9) : ((temp * 9 / 5) + 32);
+    }
+
+    public String generateOutput(String converter, double result) {
+        String temp = converter.equalsIgnoreCase("C") ? "Celsius" : "Fahrenheit";
+        return String.format("The temperature in %s is %.2f.", temp, result);
+    }
+
+    public void output(String generateOutput) {
+        System.out.println(generateOutput);
     }
 }
