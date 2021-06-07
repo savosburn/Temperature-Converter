@@ -13,10 +13,14 @@ public class App {
     public static void main(String[] args) {
         App myApp = new App();
 
+        // Input
         String converter = myApp.whichConversion();
         double temp = myApp.readTemp(converter);
 
+        // Calculations
         double result = myApp.calculateResult(converter, temp);
+
+        // Output
         String outputString = myApp.generateOutput(converter, result);
         myApp.output(outputString);
     }
