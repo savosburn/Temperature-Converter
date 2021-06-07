@@ -55,6 +55,12 @@ public class App {
             System.out.print("Please enter your temperature in Celsius: ");
         }
 
+        // User can only enter number
+        while (!in.hasNextDouble()) {
+            System.out.print("Invalid temperature. Enter again: ");
+            in.next();
+        }
+
         return in.nextDouble();
     }
 
